@@ -133,12 +133,18 @@ alias v-serve='npm run serve'
 alias s-serve='npm run dev'
 alias r-serve='npm run start'
 alias i='npm install'
+alias n="node"
+alias run="node $1"
 
 # ---- docker ----
 
 alias compose='docker-compose up --build'
 alias compose-worker='docker-compose --file dc_worker.yml up --build'
 alias decompose='docker-compose down --remove-orphans'
+
+# ---- django ----
+
+alias web-bash='docker-compose run web bash'
 
 # ---- git ----
 
@@ -178,30 +184,22 @@ alias home='cd ~'
 
 # ---- project paths ----
 
-alias ...lw='~/home/trtl/trtl-clients/leadershipwise-app/refactor-iterations/r2/leadershipwise'
-alias ...decker='~/home/lofty/decker/decker-fp'
+alias ...lw='cd ~/home/trtl/trtl-clients/leadershipwise-app/refactor-iterations/r2/leadershipwise'
+alias ...decker='cd ~/home/lofty/decker/decker-fp'
 
 # ---- open projects ----
 
-alias ws-decker='cd ~/home/lofty/decker/decker-fp && c .'
-alias ws-lw='cd ~/home/trtl/trtl-clients/leadershipwise-app/refactor-iterations/r2/leadershipwise && c .'
+alias open-decker='cd ~/home/lofty/decker/decker-fp && c .'
+alias open-lw='cd ~/home/trtl/trtl-clients/leadershipwise-app/refactor-iterations/r2/leadershipwise && c .'
 
-# ---- django ----
-
-alias web-bash='docker-compose run web bash'
 
 # ---- flutter ----
 
-alias flutter-playground='cd ~/home/playground/flutter-playground/quizapp && c'
 alias pub-get='flutter pub get'
 alias pub-upgrade='flutter pub upgrade'
 alias flutter-reset='flutter clean && flutter pub get'
-alias clean-run='flutter clean && flutter run'
 alias run-splash='flutter pub run flutter_native_splash:create'
-alias fr="flutter run"
 alias run-samsung="flutter run -d 9889ba355250385257"
 alias run-pixel="flutter run -d emulator-5554" # Pixel 4a
 alias run-ios="flutter run -d 705E78F8-6EF7-4D3C-9DF3-1EB6753AA2C3" # iPhone 13 Pro
 alias update-app-icon="flutter pub run flutter_launcher_icons:main"
-
-export PATH=$PATH:/Users/trentbrew/home/playground/chromium-build/depot_tools
