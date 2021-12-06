@@ -112,12 +112,12 @@ alias o='open .'
 
 # ---- zsh ----
 
+alias plz="sudo"
 alias permit="chmod +x $1"
 alias zshrc="cd ~ && c .zshrc"
 alias bashrc="zshrc"
 alias l="ls -a"
 alias la="ls -al"
-alias plz="sudo"
 
 function cd() {
     new_directory="$*";
@@ -144,7 +144,6 @@ alias decompose='docker-compose down --remove-orphans'
 
 alias git-playground='cd ~/home/lofty/playground/git-playground && c .'
 alias gap='git add . && git commit -m "auto" && git push -u origin master'
-# alias git-fresh='git checkout development && git pull --rebase && git checkout $1 && git rebase development'
 alias oneline='git log --oneline'
 alias ol="git log --oneline"
 alias commit="git add . && git commit -m $1"
