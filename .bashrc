@@ -70,35 +70,50 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# ---- zsh ----
 
-# export MANPATH="/usr/local/man:$MANPATH"
+alias reset="zsh"
+alias new="zsh"
+alias permit="chmod +x $1"
+alias zshrc="cd ~ && c .zshrc"
+alias bashrc="zshrc"
+alias l="ls -a"
+alias la="ls -al"
+alias plz="sudo"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+function cd() {
+    new_directory="$*";
+    if [ $# -eq 0 ]; then
+        new_directory=${HOME};
+    fi;
+    builtin cd "${new_directory}" && ls -a
+}
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# ---- navigation ----
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+alias ..='cd ..'
+alias home='cd ~'
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# ---- git ----
+
+alias git-playground='cd ~/home/lofty/playground/git-playground && c .'
+alias gap='git add . && git commit -m "auto" && git push -u origin master'
+alias oneline='git log --oneline'
+alias ol="git log --oneline"
+alias commit="git add . && git commit -m $1"
+alias check="git checkout $1"
+alias dev="git checkout development"
+alias abort="git rebase --abort"
+alias rebase="git rebase -i $1"
+alias rb="git rebase -i $1"
+alias status="git status"
+alias s="git status"
+alias push="git add . && git commit -m $1 && git push"
 
 # ---- vscode ----
 
@@ -109,23 +124,6 @@ alias vscode-settings="code-insiders ~/Library/'Application Support'/'Code - Ins
 # ---- finder ----
 
 alias o='open .'
-
-# ---- zsh ----
-
-alias plz="sudo"
-alias permit="chmod +x $1"
-alias zshrc="cd ~ && c .zshrc"
-alias bashrc="zshrc"
-alias l="ls -a"
-alias la="ls -al"
-
-function cd() {
-    new_directory="$*";
-    if [ $# -eq 0 ]; then
-        new_directory=${HOME};
-    fi;
-    builtin cd "${new_directory}" && ls -a
-}
 
 # ---- node ----
 
@@ -146,26 +144,6 @@ alias decompose='docker-compose down --remove-orphans'
 
 alias web-bash='docker-compose run web bash'
 
-# ---- git ----
-
-alias git-playground='cd ~/home/lofty/playground/git-playground && c .'
-alias gap='git add . && git commit -m "auto" && git push -u origin master'
-alias oneline='git log --oneline'
-alias ol="git log --oneline"
-alias commit="git add . && git commit -m $1"
-alias check="git checkout $1"
-alias dev="git checkout development"
-alias abort="git rebase --abort"
-alias rebase="git rebase -i $1"
-alias rb="git rebase -i $1"
-alias status="git status"
-alias s="git status"
-alias push="git add . && git commit -m $1 && git push"
-
-# ---- svelte ----
-
-alias svelte='npx degit sveltejs/template new-svelte-project && cd new-svelte-project && npm i && c .'
-
 # ---- firebase ----
 
 alias auth='firebase logout && firebase login'
@@ -173,25 +151,9 @@ alias deploy='npm run build && firebase deploy'
 alias deploy-functions='firebase deploy --only functions'
 alias fireshell='npm run fireshell'
 
-# ---- jutsu ----
+# ---- svelte ----
 
-alias shadowclone='zx ~/Development/scripts/git/shadowclone/index.mjs'
-
-# ---- navigation ----
-
-alias ..='cd ..'
-alias home='cd ~'
-
-# ---- project paths ----
-
-alias ...lw='cd ~/home/trtl/trtl-clients/leadershipwise-app/refactor-iterations/r2/leadershipwise'
-alias ...decker='cd ~/home/lofty/decker/decker-fp'
-
-# ---- open projects ----
-
-alias open-decker='cd ~/home/lofty/decker/decker-fp && c .'
-alias open-lw='cd ~/home/trtl/trtl-clients/leadershipwise-app/refactor-iterations/r2/leadershipwise && c .'
-
+alias svelte='npx degit sveltejs/template new-svelte-project && cd new-svelte-project && npm i && c .'
 
 # ---- flutter ----
 
@@ -199,7 +161,12 @@ alias pub-get='flutter pub get'
 alias pub-upgrade='flutter pub upgrade'
 alias flutter-reset='flutter clean && flutter pub get'
 alias run-splash='flutter pub run flutter_native_splash:create'
-alias run-samsung="flutter run -d 9889ba355250385257"
+alias update-app-icon="flutter pub run flutter_launcher_icons:main"
+alias run-samsung="flutter run -d 9889ba355250385257" # Galaxy S8
 alias run-pixel="flutter run -d emulator-5554" # Pixel 4a
 alias run-ios="flutter run -d 705E78F8-6EF7-4D3C-9DF3-1EB6753AA2C3" # iPhone 13 Pro
-alias update-app-icon="flutter pub run flutter_launcher_icons:main"
+
+# ---- jutsu ----
+
+alias shadowclone='zx ~/Development/scripts/git/shadowclone/index.mjs'
+
